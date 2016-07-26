@@ -7,6 +7,8 @@ const converter = (entity = {}, originalText) => {
       return `{{ ${entity.data.prefix}.${entity.data.property} }}`;
     case 'LINK':
       return `<a href="${entity.data.url}">${originalText}</a>`;
+    case 'IMAGE':
+      return `<img src="${entity.data.src}"/>`;
     default:
       return originalText;
   }
