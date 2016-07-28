@@ -2,7 +2,7 @@
   "name": "draft-convert",
   "version": "1.1.1",
   "description": "Extensibly serialize & deserialize Draft.js ContentState",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": "HubSpot/draft-convert",
   "scripts": {
     "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min",
@@ -17,8 +17,7 @@
   },
   "files": [
     "dist",
-    "lib",
-    "src"
+    "lib"
   ],
   "keywords": [
     "draft",
