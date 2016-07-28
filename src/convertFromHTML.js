@@ -48,6 +48,9 @@ const inlineTags = {
 let lastBlock;
 
 const defaultHTMLToBlock = (nodeName, node, lastList) => {
+  if (nodeName === 'img') {
+    return 'atomic';
+  }
   return undefined;
 };
 
@@ -379,6 +382,10 @@ function genFragment(
       if (nodeName === 'a' && child.href && hasValidLinkText(child)) {
         href = child.href;
         entityId = Entity.create('LINK', 'MUTABLE', {url: href});
+      }
+
+      if (child.src) {
+        entityId = Entity.create('IMAGE', 'IMUTABLE', {src: child.src});
       }
     }
 
