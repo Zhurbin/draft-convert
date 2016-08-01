@@ -191,7 +191,11 @@ function joinChunks(A, B) {
 
   const adjacentDividers = lastInA === '\r' && firstInB === '\r';
   const isJoiningBlocks = A.text !== '\r' && B.text !== '\r'; // when joining two full blocks like this we want to pop one divider
-  const addingNewlineToEmptyBlock = (A.text === '\r' && !A.isNewline) && B.isNewline; // when joining a newline to an empty block we want to remove the newline
+  let addingNewlineToEmptyBlock = (A.text === '\r' && !A.isNewline) && B.isNewline; // when joining a newline to an empty block we want to remove the newline
+
+  if ((A.blocks[0] && A.blocks[0].type === 'atomic') || (B.blocks[0] && B.blocks[0].type === 'atomic')) {
+    addingNewlineToEmptyBlock = true;
+  }
 
   if (adjacentDividers && (isJoiningBlocks || addingNewlineToEmptyBlock)) {
     A.text = A.text.slice(0, -1);
